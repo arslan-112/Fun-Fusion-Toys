@@ -1,15 +1,13 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/orders";
+const API_URL = `${import.meta.env.VITE_API_BASE_URL}/orders`;
 
-// Fetch orders
 export const getOrders = async () => {
   const response = await axios.get(API_URL);
   return response.data.data;
 };
 
-// Update order status
 export const updateOrder = async (orderId, updatedData) => {
   const response = await axios.put(`${API_URL}/${orderId}/status`, updatedData);
-  return response.data; // return the updated order data
+  return response.data;
 };

@@ -1,13 +1,11 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/products";
+const API_URL = `${import.meta.env.VITE_API_BASE_URL}/products`;
 
-// Utility function to get the token from localStorage
 const getToken = () => {
-  return localStorage.getItem("token"); // Replace 'token' with the actual key used in localStorage
+  return localStorage.getItem("token");
 };
 
-// Function to create an axios instance with or without the Authorization header
 const createAxiosInstance = () => {
   const token = getToken();
   const headers = token ? { Authorization: `Bearer ${token}` } : {};
@@ -19,24 +17,24 @@ const createAxiosInstance = () => {
 };
 
 export const getProducts = async () => {
-  const response = await axios.get(API_URL); // No token is added here for GET requests
+  const response = await axios.get(API_URL);
   return response.data.data;
 };
 
 export const addProduct = async (product) => {
-  const axiosInstance = createAxiosInstance(); // Creating an axios instance with token for POST requests
+  const axiosInstance = createAxiosInstance();
   const response = await axiosInstance.post(API_URL, product);
   return response.data.data;
 };
 
 export const updateProduct = async (id, product) => {
-  const axiosInstance = createAxiosInstance(); // Creating an axios instance with token for PUT requests
+  const axiosInstance = createAxiosInstance();
   const response = await axiosInstance.put(`${API_URL}/${id}`, product);
   return response.data.data;
 };
 
 export const deleteProduct = async (id) => {
-  const axiosInstance = createAxiosInstance(); // Creating an axios instance with token for DELETE requests
+  const axiosInstance = createAxiosInstance();
   const response = await axiosInstance.delete(`${API_URL}/${id}`);
   return response.data.data;
 };
