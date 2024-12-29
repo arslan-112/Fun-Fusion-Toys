@@ -11,6 +11,8 @@ export const ProductDescription = () => {
 
   useEffect(() => {
     console.log("useEffect triggered for productId:", productId);
+    console.log("API Base URL:", import.meta.env.VITE_API_BASE_URL);
+    console.log("API Base URL 2:", import.meta.env.VITE_API_BASE_URL2);
 
     const fetchProduct = async () => {
       try {
