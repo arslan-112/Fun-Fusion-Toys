@@ -103,7 +103,7 @@ const Users = () => {
         Add User
       </Button>
       <DataTable columns={columns} data={users} loading={loading} />
-      
+
       {/* Modal for Adding/Editing Users */}
       <Modal
         visible={modalVisible}

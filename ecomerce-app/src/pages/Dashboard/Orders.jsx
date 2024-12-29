@@ -1,5 +1,17 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import { Table, Input, Tag, Space, Modal, Button, Form, Input as AntInput, notification, Select } from "antd";
+import {
+  Table,
+  Input,
+  Tag,
+  Space,
+  Modal,
+  Button,
+  Form,
+  Input as AntInput,
+  notification,
+  Select,
+} from "antd";
 import { getOrders, updateOrder } from "../../api/orders"; // Assume `updateOrder` is an API method for updating orders
 
 const { Search } = Input;
@@ -33,15 +45,19 @@ const Orders = () => {
   }, []);
 
   const handleSearch = (value) => {
-    const filtered = orders.filter((order) =>
-      order.userDetails.firstName?.toLowerCase().includes(value.toLowerCase()) ||
-      order.userDetails.lastName?.toLowerCase().includes(value.toLowerCase()) ||
-      order.email.toLowerCase().includes(value.toLowerCase()) ||
-      order.orderStatus?.toLowerCase().includes(value.toLowerCase()) // Add this line to filter by order status
+    const filtered = orders.filter(
+      (order) =>
+        order.userDetails.firstName
+          ?.toLowerCase()
+          .includes(value.toLowerCase()) ||
+        order.userDetails.lastName
+          ?.toLowerCase()
+          .includes(value.toLowerCase()) ||
+        order.email.toLowerCase().includes(value.toLowerCase()) ||
+        order.orderStatus?.toLowerCase().includes(value.toLowerCase()) // Add this line to filter by order status
     );
     setFilteredOrders(filtered);
   };
-  
 
   const handleEdit = (order) => {
     setCurrentOrder(order);
@@ -82,7 +98,8 @@ const Orders = () => {
       title: "Name",
       dataIndex: "userDetails",
       key: "name",
-      render: (userDetails) => `${userDetails.firstName} ${userDetails.lastName}`,
+      render: (userDetails) =>
+        `${userDetails.firstName} ${userDetails.lastName}`,
     },
     {
       title: "Address",
@@ -126,13 +143,26 @@ const Orders = () => {
       render: (record) => (
         <span>
           {record.products.map((product) => (
-            <div key={product.productId._id} style={{ display: "flex", alignItems: "center", marginBottom: 8 }}>
-              <img 
-                src={`http://localhost:5000/uploads/`+product.productId.image} 
-                alt={product.productId.name} 
-                style={{ width: 50, height: 50, objectFit: "cover", marginRight: 10 }} 
+            <div
+              key={product.productId._id}
+              style={{ display: "flex", alignItems: "center", marginBottom: 8 }}
+            >
+              <img
+                src={
+                  `${import.meta.env.VITE_API_BASE_URL2}/uploads/` +
+                  product.productId.image
+                }
+                alt={product.productId.name}
+                style={{
+                  width: 50,
+                  height: 50,
+                  objectFit: "cover",
+                  marginRight: 10,
+                }}
               />
-              <span>{product.productId.name} x {product.quantity}</span>
+              <span>
+                {product.productId.name} x {product.quantity}
+              </span>
             </div>
           ))}
         </span>
@@ -184,7 +214,11 @@ const Orders = () => {
           <Form.Item name="email" label="Email">
             <AntInput disabled />
           </Form.Item>
-          <Form.Item name="orderStatus" label="Status" rules={[{ required: true, message: "Status is required" }]}>
+          <Form.Item
+            name="orderStatus"
+            label="Status"
+            rules={[{ required: true, message: "Status is required" }]}
+          >
             <Select>
               <Select.Option value="pending">Pending</Select.Option>
               <Select.Option value="shipped">Shipped</Select.Option>

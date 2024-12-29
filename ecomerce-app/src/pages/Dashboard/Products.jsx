@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Button, message, Space, Upload, Input, Modal, Form } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import DataTable from "../../components/Table";
-import { getProducts, addProduct, updateProduct, deleteProduct } from "../../api/products";
+import {
+  getProducts,
+  addProduct,
+  updateProduct,
+  deleteProduct,
+} from "../../api/products";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -32,7 +37,7 @@ const Products = () => {
       formData.append("name", values.name);
       formData.append("price", values.price);
       formData.append("description", values.description);
-      formData.append("quantity", values.quantity);  // Add quantity
+      formData.append("quantity", values.quantity); // Add quantity
       if (file) {
         formData.append("image", file); // Include the uploaded file
       }
@@ -85,7 +90,7 @@ const Products = () => {
       key: "image",
       render: (image) => (
         <img
-          src={`http://localhost:5000/uploads/${image}`} // Use correct path to access the image
+          src={`${import.meta.env.VITE_API_BASE_URL2}/uploads/${image}`} // Use correct path to access the image
           alt="product"
           style={{ width: 50, height: 50 }}
         />
@@ -96,12 +101,18 @@ const Products = () => {
       key: "actions",
       render: (_, record) => (
         <Space>
-          <Button onClick={() => { 
-            setCurrentProduct(record); 
-            form.setFieldsValue(record);
-            setModalVisible(true); 
-          }}>Edit</Button>
-          <Button danger onClick={() => handleDeleteProduct(record._id)}>Delete</Button>
+          <Button
+            onClick={() => {
+              setCurrentProduct(record);
+              form.setFieldsValue(record);
+              setModalVisible(true);
+            }}
+          >
+            Edit
+          </Button>
+          <Button danger onClick={() => handleDeleteProduct(record._id)}>
+            Delete
+          </Button>
         </Space>
       ),
     },
@@ -111,10 +122,10 @@ const Products = () => {
     <>
       <Button
         type="primary"
-        onClick={() => { 
-          setModalVisible(true); 
-          setCurrentProduct(null); 
-          form.resetFields(); 
+        onClick={() => {
+          setModalVisible(true);
+          setCurrentProduct(null);
+          form.resetFields();
         }}
         style={{ marginBottom: "16px" }}
       >
@@ -124,9 +135,9 @@ const Products = () => {
       <Modal
         title={currentProduct ? "Edit Product" : "Add Product"}
         visible={modalVisible}
-        onCancel={() => { 
-          setModalVisible(false); 
-          setFile(null); 
+        onCancel={() => {
+          setModalVisible(false);
+          setFile(null);
         }}
         onOk={handleAddEditProduct}
         confirmLoading={loading}
@@ -135,20 +146,21 @@ const Products = () => {
           <Form.Item
             name="name"
             label="Name"
-            rules={[{ required: true, message: "Please enter the product name" }]}
+            rules={[
+              { required: true, message: "Please enter the product name" },
+            ]}
           >
             <Input placeholder="Enter product name" />
           </Form.Item>
-          <Form.Item
-            name="price"
-            label="Price"
-          >
+          <Form.Item name="price" label="Price">
             <Input placeholder="Enter product price" type="number" />
           </Form.Item>
           <Form.Item
             name="quantity"
             label="Quantity"
-            rules={[{ required: true, message: "Please enter the product quantity" }]}
+            rules={[
+              { required: true, message: "Please enter the product quantity" },
+            ]}
           >
             <Input placeholder="Enter product quantity" type="number" />
           </Form.Item>
