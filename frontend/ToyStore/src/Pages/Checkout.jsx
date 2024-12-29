@@ -23,7 +23,7 @@ import { useNavigate } from "react-router-dom";
 // };
 
 export const CheckoutPage = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const { cartItems, getCartTotalAmount } = useContext(ShopContext);
   const { auth } = useContext(UserAuthContext); // Access user authentication context
   const [formData, setFormData] = useState({
@@ -34,6 +34,8 @@ export const CheckoutPage = () => {
     email: "",
   });
 
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL; // Get the API base URL from env
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -41,46 +43,46 @@ export const CheckoutPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (!Object.values(cartItems).length) {
       alert("Your cart is empty. Add items to proceed.");
       return;
     }
-  
+
     if (!auth || !auth.user || !auth.user._id) {
       alert("Please log in to place an order.");
       return;
     }
-  
+
     // Log the user and userId for debugging
     console.log("User object:", auth.user);
     console.log("User ID:", auth.user._id);
-  
+
     // Format the products correctly
     const products = Object.keys(cartItems).map((itemName) => ({
-      productId: cartItems[itemName]._id,  // Assuming '_id' exists in the product object
+      productId: cartItems[itemName]._id, // Assuming '_id' exists in the product object
       quantity: cartItems[itemName].quantity,
     }));
-  
+
     const orderData = {
       fullname: formData.fullname,
       address: formData.address,
       city: formData.city,
       postalcode: formData.postalcode,
       email: formData.email,
-      products,  // Make sure products are in the correct format
+      products, // Make sure products are in the correct format
       total: getCartTotalAmount(),
-      userId: auth.user._id,  // Make sure userId is properly set
+      userId: auth.user._id, // Make sure userId is properly set
     };
-  
-    console.log("Order payload being sent:", orderData);  // Check the structure of the order data
-  
+
+    console.log("Order payload being sent:", orderData); // Check the structure of the order data
+
     try {
-      const response = await axios.post("http://localhost:5000/api/orders", orderData);
+      const response = await axios.post(`${apiBaseUrl}/orders`, orderData); // Use dynamic API URL
       if (response.data.success) {
         alert("Order placed successfully!");
         localStorage.removeItem("cartItems");
-        navigate("/home")
+        navigate("/home");
       } else {
         alert("Error: " + response.data.message);
       }
@@ -89,7 +91,6 @@ export const CheckoutPage = () => {
       alert("Failed to place order. Please try again later.");
     }
   };
-  
 
   return (
     <div className="CheckoutPage">

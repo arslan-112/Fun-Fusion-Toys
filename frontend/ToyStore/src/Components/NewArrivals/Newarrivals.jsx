@@ -6,19 +6,20 @@ import { Item } from "../Item/Item";
 export const Newarrivals = () => {
   const [products, setProducts] = useState([]);
 
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/products");
-        setProducts(response.data.data); 
-        console.error("Unexpected response format:", response.data.data);
+        const response = await axios.get(`${apiBaseUrl}/products`); // Use dynamic API URL
+        setProducts(response.data.data);
       } catch (error) {
-        console.error("Error fetching products:", error); 
+        console.error("Error fetching products:", error);
       }
     };
 
     fetchProducts();
-  }, []);
+  }, [apiBaseUrl]);
 
   return (
     <div className="NewArrivals">
@@ -27,9 +28,9 @@ export const Newarrivals = () => {
         {products.length === 0 ? (
           <p>Loading products...</p>
         ) : (
-          products.slice(0, 3).map((product) => (
-            <Item key={product._id} product={product} />
-          ))
+          products
+            .slice(0, 3)
+            .map((product) => <Item key={product._id} product={product} />)
         )}
       </div>
     </div>

@@ -1,15 +1,19 @@
+/* eslint-disable react/prop-types */
 import "./Description.css";
 import { ShopContext } from "../../Context/ShopContext";
 import { useContext, useState } from "react";
 import addtocarT from "../Asset/shop_icon2.png";
 import { memo } from "react";
 
-export const Description = memo (({ product }) => {
+// eslint-disable-next-line react/prop-types
+export const Description = memo(({ product }) => {
   const { addToCart } = useContext(ShopContext);
   const [quantity, setQuantity] = useState(1);
 
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL2;
+
   const handleQuantityChange = (event) => {
-    const value = Math.max(1, parseInt(event.target.value) || 1); 
+    const value = Math.max(1, parseInt(event.target.value) || 1);
     setQuantity(value);
   };
 
@@ -22,7 +26,10 @@ export const Description = memo (({ product }) => {
       <div className="product-content">
         <div className="product-display-left">
           <div className="product-image">
-            <img src={`http://localhost:5000/uploads/${product.image}`} alt={product.name} />
+            <img
+              src={`${apiBaseUrl}/uploads/${product.image}`}
+              alt={product.name}
+            />
           </div>
         </div>
         <div className="product-display-right">
@@ -31,7 +38,9 @@ export const Description = memo (({ product }) => {
             <span className="price">Rs.{product.price}</span>
           </div>
           <div className="quantity-container">
-            <label htmlFor="quantity" className="quantity-label">Quantity:</label>
+            <label htmlFor="quantity" className="quantity-label">
+              Quantity:
+            </label>
             <input
               type="number"
               id="quantity"
@@ -53,7 +62,6 @@ export const Description = memo (({ product }) => {
       </div>
     </div>
   );
-  
 });
 
 Description.displayName = "Description";
