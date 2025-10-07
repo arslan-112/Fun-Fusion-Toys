@@ -8,7 +8,7 @@ export const Middle = () => {
       <div className="overlay">
         <img className="imga" src={slider} alt="Slider Image" />
         <div className="text-overlay">
-          <h1>Welcome to Fun Fusion Toys</h1>
+          <h1>Welcome to EliteToys by Arslan</h1>
           <p>Discover the joy of play with our amazing collection of toys!</p>
           <Link to = "/Shop"><button>Shop Now</button></Link>
         </div>
