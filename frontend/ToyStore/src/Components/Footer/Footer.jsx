@@ -6,7 +6,7 @@ export const Footer = () => {
     <div className="Footer">
         <div className="footer-logo">
             <img src={logo} alt="Fun Fusion Toys Logo" />
-            <p>Fun Fusion Toys</p>
+            <p>EliteToys by Arslan</p>
         </div>
         <ul className="footer-links">
             <li>About Us</li>
