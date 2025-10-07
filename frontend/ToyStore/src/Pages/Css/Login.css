@@ -46,14 +46,14 @@
 }
 
 .login-signup-fields input:focus {
-    border-color: #f25aa9; /* Highlight border on focus */
+    border-color: #162ba1; /* Highlight border on focus */
 }
 
 .login-signup-container button {
     width: 100%; /* Adjust width to match the form */
     height: 50px; /* Reduce height */
     color: white;
-    background: #f25aa9;
+    background: #162ba1;
     margin-top: 30px;
     border: none;
     font-size: 18px; /* Reduce font size */
@@ -76,7 +76,7 @@
 }
 
 .login-signup-container p span {
-    color: #f25aa9;
+    color: #162ba1;
     cursor: pointer;
     text-decoration: underline;
 }
