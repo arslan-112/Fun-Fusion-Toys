@@ -6,7 +6,7 @@ export const AboutUs = () => {
       <div className="hero-section">
         <h1>About Us</h1>
         <p>
-          Welcome to <strong>Fun Fusion Toys</strong>, where imagination meets creativity! Our mission is to bring joy, learning, and endless fun to kids of all ages with our carefully curated toys and games.
+          Welcome to <strong>EliteToys by Arslan</strong>, where imagination meets creativity! Our mission is to bring joy, learning, and endless fun to kids of all ages with our carefully curated toys and games.
         </p>
       </div>
 
@@ -14,7 +14,7 @@ export const AboutUs = () => {
         <div className="about-item">
           <h2>Who We Are</h2>
           <p>
-            At Fun Fusion Toys, we are passionate about offering high-quality, safe, and innovative toys. We started our journey in 2010 with a vision to make every child smile by providing toys that spark their curiosity and enhance their creativity.
+            At EliteToys by Arslan, we are passionate about offering high-quality, safe, and innovative toys. We started our journey in 2010 with a vision to make every child smile by providing toys that spark their curiosity and enhance their creativity.
           </p>
         </div>
 
