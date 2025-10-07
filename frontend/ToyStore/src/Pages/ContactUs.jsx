@@ -7,7 +7,7 @@ export const ContactUs = () => {
         <div className="contact-item">
           <i className="fas fa-envelope icon"></i>
           <h3>OUR EMAIL</h3>
-          <p>funfusiontoys@gmail.com</p>
+          <p>elitetoysbyarslan@gmail.com</p>
         </div>
         <div className="contact-item">
           <i className="fas fa-phone icon"></i>
