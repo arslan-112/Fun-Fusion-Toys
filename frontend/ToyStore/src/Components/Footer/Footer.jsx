@@ -33,7 +33,7 @@ export const Footer = () => {
             </div>
         </div>
         <div className="footer-bottom">
-            <p>&copy; 2024 Fun Fusion Toys. All rights reserved.</p>
+            <p>&copy; 2024 EliteToys by Arslan. All rights reserved.</p>
       </div>
     </div>
     
