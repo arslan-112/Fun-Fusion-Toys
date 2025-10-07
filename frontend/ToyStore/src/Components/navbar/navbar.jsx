@@ -14,7 +14,7 @@ export const Navbar = () => {
     <div className="navbar">
       <div className="nav-logo">
         <img src={logo}></img>
-        <p>Fun Fusion Toys</p>
+        <p>EliteToys by Arslan</p>
       </div>
       <ul className="nav-menu">
       <Link to ="/home"><li>Home</li></Link>
